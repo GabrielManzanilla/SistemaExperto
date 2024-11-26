@@ -1,5 +1,5 @@
 
-states_by_civilization = {
+estados = {
     "Olmeca": ["Veracruz", "Tabasco"],
     "Maya": ["Yucatán", "Quintana Roo", "Campeche", "Chiapas"],
     "Teotihuacana": ["Hidalgo"],
@@ -8,9 +8,12 @@ states_by_civilization = {
     "Zapoteca": ["Oaxaca"]
 }
 
-geography = ["Montañas", "Meseta", "Valle", "Cavernas-Cuevas"]
-structures = ["Pirámides", "Observatorios", "Templos", "Plazas ceremoniales"]
+geografias = ["Montañas", "Planicie", "Valle", "Cavernas-Cuevas"]
+estructuras = ["Pirámides", "Observatorios", "Templos", "Plazas ceremoniales"]
 
 respuestas=[]
 
-cultura = "Maya"
+cultura = ""
+estado=""
+geography=""
+estructura=""
