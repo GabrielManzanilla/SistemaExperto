@@ -15,7 +15,7 @@ class AdicionalQuestion(tk.Frame):
 
         self.true_button = tk.Button(self, text="SI", font=("Arial", 14), width=10, bg='#8b7d68',
                                      command=self.second_search)
-        self.true_button.grid(row=1, column=0, padx=10, pady=10)
+        self.true_button.grid(row=1, column=1, padx=10, pady=10)
 
         self.false_button = tk.Button(self, text="NO", font=("Arial", 14), width=10, bg='#8b7d68',
                                      command=self.next_question)
@@ -32,20 +32,6 @@ class AdicionalQuestion(tk.Frame):
         self.name_label.config(text=f"Acaso este sitio... {cfg.adition_condition}")
 
         # Manejar la carga de la imagen con Pillow
-        try:
-            # Abrir y redimensionar la imagen con Pillow
-            image = Image.open(cfg.path_image)
-            image = image.resize((200, 200))  # Ajusta el tamaño de la imagen
-            photo = ImageTk.PhotoImage(image)
-
-            # Actualizar el widget de imagen
-            self.image_label.config(image=photo)
-            self.image_label.image = photo  # Guardar referencia para evitar que se elimine la imagen
-        except Exception as e:
-            print(f"Error al cargar la imagen: {e}")  # Mostrar el error en la consola
-
-        # Actualizar la descripción
-        self.description_label.config(text=cfg.descripcion)
 
     def first_scene(self):
         """Navegar a la primera escena."""
@@ -63,11 +49,21 @@ class AdicionalQuestion(tk.Frame):
         """Navegar a la siguiente pregunta."""
         clave=(cfg.cultura,cfg.estado,cfg.geography,cfg.estructura)
         cfg.contador += 1
-        cfg.adition_condition=cfg.respuestas[clave][cfg.contador]
-        self.controller.show_frame("AdicionalQuestion")
+        if cfg.contador > len(cfg.respuestas):
+            cfg.adition_condition=cfg.respuestas[clave][cfg.contador]
+            self.controller.show_frame("AdicionalQuestion")
+        else:
+            clave=(cfg.cultura,cfg.estado,cfg.geography,cfg.estructura)
+            (nombre,path_image,descripcion)=sitios_arqueologicos[clave]
+            cfg.nombre=nombre
+            cfg.path_image=path_image
+            cfg.descripcion=descripcion
+            self.controller.show_frame("Answer")
+            
 
     def second_search(self):
         """Realizar la segunda búsqueda."""
+        cfg.adition_info=cfg.adition_condition
         clave=(cfg.cultura,cfg.estado,cfg.geography,cfg.estructura, cfg.adition_info)
         (nombre,path_image,descripcion)=sitios_arqueologicos[clave]
         cfg.nombre=nombre

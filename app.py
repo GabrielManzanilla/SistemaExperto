@@ -7,6 +7,7 @@ from Views.response import Answer
 from Views.aditional_question import AdicionalQuestion
 from Views.adquisicion1 import Adquisicion1
 from Views.adquisicion2 import Adquisicion2
+from Views.response_details import AnswerDetails
 
 class App(tk.Tk):
     def __init__(self):
@@ -25,7 +26,7 @@ class App(tk.Tk):
         self.frames = {}
 
         # Inicializar escenas
-        for SceneClass in (Scene1, Scene2,Scene3, Scene4, Answer, Adquisicion1, Adquisicion2, AdicionalQuestion):
+        for SceneClass in (Scene1, Scene2,Scene3, Scene4, Answer, AnswerDetails, Adquisicion1, Adquisicion2, AdicionalQuestion):
             frame = SceneClass(self.container, self)
             self.frames[SceneClass.__name__] = frame
             frame.grid(row=0, column=0, sticky="nsew")
