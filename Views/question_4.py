@@ -1,6 +1,7 @@
 import tkinter as tk
 import config as cfg
-from request import search_coincidences
+# from request import search_coincidences
+from dictionary import sitios_arqueologicos
 
 class Scene4(tk.Frame):
     def __init__(self, parent, controller):
@@ -37,8 +38,22 @@ class Scene4(tk.Frame):
     def on_structure_selected(self, structure):
         """Acción al seleccionar la geografia."""
         cfg.estructura= structure
-        print(f"Estrucutra seleccionada: {structure}")
-        search_coincidences()
+        clave=(cfg.cultura,cfg.estado,cfg.geography,cfg.estructura)
+        print(clave)
+        # cfg.cultura = cfg.estado = cfg.geography = cfg.estructura = ""
+        if clave in cfg.respuestas:
+            cfg.adition_condition=cfg.respuestas[clave][cfg.contador]
+            self.controller.show_frame("AdicionalQuestion")
+        else:
+            if clave in sitios_arqueologicos:
+                (nombre,path_image,descripcion)=sitios_arqueologicos[clave]
+                print(f"Nombre: {nombre} {path_image} {descripcion}")
+                cfg.nombre=nombre
+                cfg.path_image=path_image
+                cfg.descripcion=descripcion
+                self.controller.show_frame("Answer")
+            else:
+                self.controller.show_frame("Adquisicion1")
         
 
     def previous_scene(self):

@@ -25,7 +25,7 @@ class Scene2(tk.Frame):
 
         row, column = 1, 0
         for estado in cfg.estados.get(cfg.cultura, []):
-            button = tk.Button(self, text=estado, font=("Arial", 12), bg='#8b7d68',
+            button = tk.Button(self, text=estado, font=("Arial", 12),width=15, bg='#8b7d68',
                                command=lambda e=estado: self.on_estado_selected(e))
             button.grid(row=row, column=column, padx=10, pady=5)
             self.dynamic_buttons.append(button)  # Guarda el botón en la lista

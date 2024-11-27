@@ -3,10 +3,15 @@ from Views.question_1 import Scene1
 from Views.question_2 import Scene2  # Asegúrate de importar todas las escenas necesarias
 from Views.question_3 import Scene3
 from Views.question_4 import Scene4
+from Views.response import Answer
+from Views.aditional_question import AdicionalQuestion
+from Views.adquisicion1 import Adquisicion1
+from Views.adquisicion2 import Adquisicion2
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Mi Aplicación")
+        self.title("Sitios Arqueológicos de México")
         self.geometry("500x600+{}+{}".format(
         (self.winfo_screenwidth() - 500) // 2, (self.winfo_screenheight() - 600) // 2))
         self.configure(bg='#D9C3A0')  # Establecer el fondo del contenedor principal
@@ -20,7 +25,7 @@ class App(tk.Tk):
         self.frames = {}
 
         # Inicializar escenas
-        for SceneClass in (Scene1, Scene2,Scene3, Scene4):
+        for SceneClass in (Scene1, Scene2,Scene3, Scene4, Answer, Adquisicion1, Adquisicion2, AdicionalQuestion):
             frame = SceneClass(self.container, self)
             self.frames[SceneClass.__name__] = frame
             frame.grid(row=0, column=0, sticky="nsew")

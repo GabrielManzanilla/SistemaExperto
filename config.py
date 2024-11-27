@@ -11,9 +11,22 @@ estados = {
 geografias = ["Montañas", "Planicie", "Valle", "Cavernas-Cuevas"]
 estructuras = ["Pirámides", "Observatorios", "Templos", "Plazas ceremoniales"]
 
-respuestas=[]
+respuestas={
+	#("Maya","Yucatán","Planicie","Pirámides"): ["Pertenece a ruta Puc"]
+}
+
 
 cultura = ""
 estado=""
 geography=""
 estructura=""
+
+adition_info=""
+
+nombre=""
+path_image=""
+descripcion=""
+
+######
+contador=0
+adition_condition=""
