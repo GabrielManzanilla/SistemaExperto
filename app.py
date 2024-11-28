@@ -16,7 +16,7 @@ class App(tk.Tk):
         
         # Dimensiones de la ventana
         width = 550
-        height = 600
+        height = 700
         
         # Calcular la posición central
         screen_width = self.winfo_screenwidth()

@@ -48,7 +48,9 @@ class Answer(tk.Frame):
         try:
             # Abrir y redimensionar la imagen con Pillow
             image = Image.open(cfg.path_image)
-            image = image.resize((200, 200))  # Ajusta el tamaño de la imagen
+            #image = image.resize((float(image.height), 200))  # Ajusta el tamaño de la imagen
+            fixed_height = 200
+            image = image.resize((int(image.width * (fixed_height / image.height)), fixed_height))
             photo = ImageTk.PhotoImage(image)
 
             # Actualizar el widget de imagen

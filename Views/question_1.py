@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageTk  # Importar Pillow para manejar imágenes
 import config as cfg  
 
 
@@ -10,13 +11,26 @@ class Scene1(tk.Frame):
         self.grid_columnconfigure(0, weight=1, minsize=100)  # Primera columna  
         self.grid_columnconfigure(1, weight=1, minsize=100)  # Segunda columna
 
+        self.image_label = tk.Label(self, bg='#D9C3A0')
+        try:
+            # Abrir y redimensionar la imagen con Pillow
+            image = Image.open(f"assets/alux-question.png")
+            image = image.resize((253, 300))  # Ajusta el tamaño de la imagen
+            photo = ImageTk.PhotoImage(image)
+
+            # Actualizar el widget de imagen
+            self.image_label.config(image=photo)
+            self.image_label.image = photo  # Guardar referencia para evitar que se elimine la imagen
+        except Exception as e:
+            print(f"Error al cargar la imagen: {e}")
+        self.image_label.grid(row=0, column=0, columnspan=3, pady=10)
         # Título con la pregunta
         question_label = tk.Label(self, text="¿A qué cultura pertenece el sitio que estas buscando?",
                                   font=("Arial", 14), bg='#D9C3A0')
-        question_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="n")
+        question_label.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="n")
 
 
-        row = 1
+        row = 2
         column = 0
         for culture in cfg.estados:
             if culture == list(cfg.estados.keys())[-1]:
