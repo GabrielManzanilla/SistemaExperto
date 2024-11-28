@@ -27,7 +27,7 @@ class Scene4(tk.Frame):
             print(f"Error al cargar la imagen: {e}")
         self.image_label.grid(row=0, column=0, columnspan=3, pady=10)
 
-        question_label = tk.Label(self, text="¿En que tipo de geografia se encuentra el sitio que estas buscando?",
+        question_label = tk.Label(self, text="¿En qué tipo de estructura recuerdas que se encuentra el sitio que estas buscando?",
                                   font=("Arial", 14), bg='#D9C3A0',  wraplength=490)
         question_label.grid(row=1, column=0, columnspan=2, pady=10)
 

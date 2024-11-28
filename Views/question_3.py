@@ -25,7 +25,7 @@ class Scene3(tk.Frame):
         self.image_label.grid(row=0, column=0, columnspan=3, pady=10)
 
         # Título con la pregunta
-        question_label = tk.Label(self, text=f"¿En que tipo de geografia se encuentra el sitio que estas buscando?",
+        question_label = tk.Label(self, text=f"¿Que tipo de geografia tiene el sitio que estas buscando?",
                                   font=("Arial", 14), bg='#D9C3A0', wraplength=490)
         question_label.grid(row=1, column=0, columnspan=2, pady=10)
 
