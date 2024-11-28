@@ -8,10 +8,11 @@ class Scene4(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg='#D9C3A0')  # Establecer el fondo del frame
-
+        self.grid_columnconfigure(0, weight=1, minsize=100)  # Primera columna  
+        self.grid_columnconfigure(1, weight=1, minsize=100)  # Segunda columna
         # Título con la pregunta
         question_label = tk.Label(self, text="¿En que tipo de geografia se encuentra el sitio que estas buscando?",
-                                  font=("Arial", 14), bg='#D9C3A0')
+                                  font=("Arial", 14), bg='#D9C3A0',  wraplength=490)
         question_label.grid(row=0, column=0, columnspan=2, pady=10)
 
         # Generar botones dinámicamente a partir de los elementos en geografias`
@@ -27,10 +28,10 @@ class Scene4(tk.Frame):
                 row += 1
 
         # Botones de navegación
-        nav_button1 = tk.Button(self, text="←", font=("Arial", 14), width=5, bg='#8b7d68',
+        nav_button1 = tk.Button(self, text="<<", font=("Arial", 14), width=5, bg='#8b7d68',
                                 command=self.previous_scene)
         nav_button1.grid(row=row + 1, column=0, pady=20)
-        nav_button2 = tk.Button(self, text="RTN", font=("Arial", 14), width=5, bg='#8b7d68',
+        nav_button2 = tk.Button(self, text="X", font=("Arial", 14), width=5, bg='#8b7d68',
                                 command=self.first_scene)
         nav_button2.grid(row=row + 1, column=1, pady=20)
 
@@ -66,3 +67,4 @@ class Scene4(tk.Frame):
         """Cambiar a la primera escena."""
         print("Navegar a la primera escena")
         self.controller.show_frame("Scene1")
+

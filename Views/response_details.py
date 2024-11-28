@@ -7,29 +7,41 @@ class AnswerDetails(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg='#D9C3A0')
+        self.grid_columnconfigure(0, weight=1, minsize=75)  # Primera columna  
+        self.grid_columnconfigure(1, weight=1, minsize=50)  # Segunda columna
+        self.grid_columnconfigure(2, weight=1, minsize=75)  # Segunda columna
 
         # Widgets predefinidos para reutilización
-        self.name_label = tk.Label(self, text="Nombre", font=("Arial", 14), bg='#D9C3A0')
-        self.name_label.grid(row=0, column=0, columnspan=2, pady=10)
-
         self.image_label = tk.Label(self, bg='#D9C3A0')
-        self.image_label.grid(row=1, column=0, columnspan=2, pady=10)
+        self.image_label.grid(row=0, column=0, columnspan=3, pady=10)
+
+        self.name_label = tk.Label(self, text="Nombre", font=("Arial", 14, "bold"), bg='#D9C3A0')
+        self.name_label.grid(row=1, column=0, columnspan=3, pady=10)
 
         self.description_label = tk.Label(self, text="Descripción", font=("Arial", 12), bg='#D9C3A0')
-        self.description_label.grid(row=2, column=0, columnspan=2, pady=10)
+        self.description_label.grid(row=2, column=0, columnspan=3, pady=10)
 
-        self.nav_button = tk.Button(self, text="RETURN", font=("Arial", 14), width=10, bg='#8b7d68',
+         #botones de navegacion
+        self.nav_button = tk.Button(self, text="<-", font=("Arial", 14), width=5, bg='#8b7d68',
+                                    command=self.previous_scene)
+        self.nav_button.grid(row=3, column=0, pady=20, sticky="e")
+
+        self.nav_button = tk.Button(self, text="<<", font=("Arial", 14), width=5, bg='#8b7d68',
                                     command=self.first_scene)
-        self.nav_button.grid(row=3, column=0, columnspan=2, pady=20)
-
-        self.nav_button = tk.Button(self, text="NO ES", font=("Arial", 14), width=10, bg='#8b7d68',
+        self.nav_button.grid(row=3, column=1, pady=20)
+        
+        self.nav_button = tk.Button(self, text="(!)", font=("Arial", 14), width=5, bg='#8b7d68',
                                     command=self.append_adquisicion)
-        self.nav_button.grid(row=3, column=1, columnspan=2, pady=20)
+        self.nav_button.grid(row=3, column=2, pady=20, sticky="w")
+
+
+
 
     def update_scene(self):
         """Actualiza los widgets con los datos actuales de cfg."""
         # Actualizar el nombre
         self.name_label.config(text=cfg.nombre)
+        self.name_label.config(text=self.name_label.cget("text").upper())
 
         # Manejar la carga de la imagen con Pillow
         try:
@@ -58,6 +70,11 @@ class AnswerDetails(tk.Frame):
         cfg.estructura = ""
         cfg.adition_info = ""
         self.controller.show_frame("Scene1")
+
+    def previous_scene(self):
+        """Cambiar a la escena anterior."""
+        print("Navegar a la escena anterior")
+        self.controller.show_frame("Answer")
 
     def append_adquisicion(self):
         """Navegar a la primera escena."""

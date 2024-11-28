@@ -6,11 +6,13 @@ class Scene2(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg='#D9C3A0')
+        self.grid_columnconfigure(0, weight=1, minsize=250)  # Primera columna  
+        self.grid_columnconfigure(1, weight=1, minsize=250)  # Segunda columna
 
         row=0
         self.dynamic_buttons = []  # Lista para almacenar botones dinámicos
         
-        question_label = tk.Label(self, text="¿En que estado se encuentra el sitio que estas buscando", font=("Arial", 14), bg='#D9C3A0')
+        question_label = tk.Label(self, text="¿En que estado se encuentra el sitio que estas buscando?", font=("Arial", 14), bg='#D9C3A0', wraplength=490)
         question_label.grid(row=row, column=0, columnspan=2, pady=10)
         
 
@@ -35,11 +37,11 @@ class Scene2(tk.Frame):
                 row += 1
             print(self.dynamic_buttons.__len__())
         
-        nav_button1 = tk.Button(self, text="←", font=("Arial", 14), width=5, bg='#8b7d68',
+        nav_button1 = tk.Button(self, text="<<", font=("Arial", 14), width=5, bg='#8b7d68',
                                 command=self.previous_scene)
         nav_button1.grid(row=row + 1, column=0, pady=20)
         self.dynamic_buttons.append(nav_button1)
-        nav_button2 = tk.Button(self, text="RETURN", font=("Arial", 14), width=5, bg='#8b7d68',
+        nav_button2 = tk.Button(self, text="X", font=("Arial", 14), width=5, bg='#8b7d68',
                                 command=self.first_scene)
         nav_button2.grid(row=row + 1, column=1, pady=20)
         self.dynamic_buttons.append(nav_button2)

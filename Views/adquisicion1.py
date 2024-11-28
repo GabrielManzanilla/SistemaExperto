@@ -10,7 +10,9 @@ class Adquisicion1(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg='#D9C3A0')  # Fondo beige como en la UI
-
+        self.grid_columnconfigure(0, weight=1, minsize=75)
+        self.grid_columnconfigure(1, weight=1, minsize=50)
+        self.grid_columnconfigure(2, weight=1, minsize=75)
         # Variables para almacenar datos
         self.name_var = tk.StringVar()
         self.description_var = tk.StringVar()
@@ -19,12 +21,12 @@ class Adquisicion1(tk.Frame):
         # Título
         title_label = tk.Label(self, text="Oops!!\nParece que no conocemos el sitio.",
                                font=("Arial", 16, "bold"), bg='#D9C3A0', fg="black", justify="left")
-        title_label.grid(row=0, column=0, columnspan=2, sticky="w", padx=20, pady=10)
+        title_label.grid(row=0, column=0, columnspan=3, sticky="w", padx=20, pady=10)
 
         # Subtítulo
         subtitle_label = tk.Label(self, text="Ayúdanos a identificarlo con los pasos que se presentan a continuación",
                                   font=("Arial", 12), bg='#D9C3A0', fg="black", justify="left")
-        subtitle_label.grid(row=1, column=0, columnspan=2, sticky="w", padx=20)
+        subtitle_label.grid(row=1, column=0, columnspan=3, sticky="w", padx=20)
 
         # Imagen
         # self.image_label = tk.Label(self, text="(No hay imagen seleccionada)", font=("Arial", 12),
@@ -34,43 +36,44 @@ class Adquisicion1(tk.Frame):
         # Campo para ingresar el nombre
         name_label = tk.Label(self, text="Ingresa el nombre", font=("Arial", 12, "bold"),
                               bg='#D9C3A0', fg="black", anchor="w")
-        name_label.grid(row=3, column=0, columnspan=2, sticky="w", padx=20, pady=(10, 0))
-        name_entry = tk.Entry(self, textvariable=self.name_var, font=("Arial", 12), width=30)
-        name_entry.grid(row=4, column=0, columnspan=2, padx=20, pady=5)
+        name_label.grid(row=3, column=0, columnspan=3, sticky="w", padx=20, pady=(10, 0))
+        self.name_entry = tk.Entry(self, textvariable=self.name_var, font=("Arial", 12), width=30, background="#8b7d68")
+        self.name_entry.grid(row=4, column=0, columnspan=3, padx=20, pady=5)
 
         # Botón para subir imagen
         image_button_label = tk.Label(self, text="Sube una Imagen", font=("Arial", 12, "bold"),
                                       bg='#D9C3A0', fg="black", anchor="w")
-        image_button_label.grid(row=5, column=0, columnspan=2, sticky="w", padx=20, pady=(10, 0))
-        image_button = tk.Button(self, text="📷", font=("Arial", 14), bg="white", width=8, relief="solid",
+        image_button_label.grid(row=5, column=0, columnspan=3, sticky="w", padx=20, pady=(10, 0))
+        image_button = tk.Button(self, text="📷", font=("Arial", 14), bg="#8b7d68", width=25, relief="solid",
                                  command=self.upload_image)
-        image_button.grid(row=6, column=0, columnspan=2, padx=20, pady=5)
+        image_button.grid(row=6, column=0, columnspan=3, padx=20, pady=5)
 
         # Campo para ingresar descripción
         description_label = tk.Label(self, text="Ingresa una breve descripción", font=("Arial", 12, "bold"),
                                      bg='#D9C3A0', fg="black", anchor="w")
-        description_label.grid(row=7, column=0, columnspan=2, sticky="w", padx=20, pady=(10, 0))
-        description_text = tk.Text(self, font=("Arial", 12), height=5, width=30, wrap="word")
-        description_text.grid(row=8, column=0, columnspan=2, padx=20, pady=5)
+        description_label.grid(row=7, column=0, columnspan=3, sticky="w", padx=20, pady=(10, 0))
+        description_text = tk.Text(self, font=("Arial", 12),background="#8b7d68" ,height=5, width=30, wrap="word")
+        description_text.grid(row=8, column=0, columnspan=3, padx=20, pady=5)
         self.description_text_widget = description_text  # Referencia para obtener el texto después
 
 
         # Botones de acción
-        nav_button1 = tk.Button(self, text="⏪", font=("Arial", 14), bg="white", width=5, relief="solid",
+        nav_button1 = tk.Button(self, text="<<", font=("Arial", 14), bg="white", width=5, relief="solid",
                                 command=self.previous_scene)
         nav_button1.grid(row=11, column=0, pady=20, padx=10, sticky="e")
 
         nav_button2 = tk.Button(self, text="✔", font=("Arial", 14), bg="white", width=5, relief="solid",
                                 command=self.submit_data)
-        nav_button2.grid(row=11, column=1, pady=20, padx=10, sticky="w")
+        nav_button2.grid(row=11, column=1, pady=20, padx=10)
 
-        nav_button3 = tk.Button(self, text="❌", font=("Arial", 14), bg="white", width=5, relief="solid",
+        nav_button3 = tk.Button(self, text="X", font=("Arial", 14), bg="white", width=5, relief="solid",
                                 command=self.cancel)
-        nav_button3.grid(row=11, column=1, pady=20, padx=10, sticky="e")
+        nav_button3.grid(row=11, column=2, pady=20, padx=10, sticky="w")
 
     def upload_image(self):
         """Abrir un diálogo para seleccionar una imagen."""
         file_path = filedialog.askopenfilename(filetypes=[("Imagenes", "*.png;*.jpg;*.jpeg;*.gif")])
+        self.image_button.config(text="📷✔")
         if file_path:
             self.image_path = file_path
             # Crear la carpeta 'imagenes' si no existe
@@ -111,4 +114,7 @@ class Adquisicion1(tk.Frame):
 
     def cancel(self):
         """Cancelar y cerrar la aplicación (puedes modificar para navegar a otra escena)."""
-        self.controller.quit()
+        self.name_entry.delete(0, tk.END)
+        self.description_text_widget.delete("1.0", tk.END)
+        self.image_path = None
+        self.controller.show_frame("Adquisicion1")
