@@ -7,11 +7,13 @@ class Scene1(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg='#D9C3A0')  # Establecer el fondo del frame
+        self.grid_columnconfigure(0, weight=1, minsize=100)  # Primera columna  
+        self.grid_columnconfigure(1, weight=1, minsize=100)  # Segunda columna
 
         # Título con la pregunta
         question_label = tk.Label(self, text="¿A qué cultura pertenece el sitio que estas buscando?",
                                   font=("Arial", 14), bg='#D9C3A0')
-        question_label.grid(row=0, column=0, columnspan=2, pady=10)
+        question_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="n")
 
 
         row = 1
