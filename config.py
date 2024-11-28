@@ -8,11 +8,11 @@ estados = {
     "Zapoteca": ["Oaxaca"]
 }
 
-geografias = ["Montañas", "Planicie", "Valle", "Cavernas-Cuevas"]
+geografias = ["Montañas", "Meseta", "Valle", "Cavernas-Cuevas"]
 estructuras = ["Pirámides", "Observatorios", "Templos", "Plazas ceremoniales"]
 
 respuestas={
-	#("Maya","Yucatán","Planicie","Pirámides"): ["Pertenece a ruta Puc"]
+	#("Maya","Yucatán","Meseta","Pirámides"): ["Pertenece a ruta Puc"]
 }
 
 
