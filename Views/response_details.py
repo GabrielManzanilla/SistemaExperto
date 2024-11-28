@@ -18,7 +18,7 @@ class AnswerDetails(tk.Frame):
         self.name_label = tk.Label(self, text="Nombre", font=("Arial", 14, "bold"), bg='#D9C3A0')
         self.name_label.grid(row=1, column=0, columnspan=3, pady=10)
 
-        self.description_label = tk.Label(self, text="Descripción", font=("Arial", 12), bg='#D9C3A0')
+        self.description_label = tk.Label(self, text="Descripción", font=("Arial", 12), bg='#D9C3A0', wraplength=500, justify="left")
         self.description_label.grid(row=2, column=0, columnspan=3, pady=10)
 
          #botones de navegacion
