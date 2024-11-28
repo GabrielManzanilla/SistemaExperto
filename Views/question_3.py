@@ -66,4 +66,4 @@ class Scene3(tk.Frame):
     def first_scene(self):
         """Cambiar a la primera escena."""
         print("Navegar a la primera escena")
-        self.controller.show_frame("Scene1")
+        self.controller.show_frame("Main")

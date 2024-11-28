@@ -8,6 +8,7 @@ from Views.aditional_question import AdicionalQuestion
 from Views.adquisicion1 import Adquisicion1
 from Views.adquisicion2 import Adquisicion2 
 from Views.response_details import AnswerDetails
+from Views.presentation import Main
 
 class App(tk.Tk):
     def __init__(self):
@@ -37,13 +38,13 @@ class App(tk.Tk):
         self.frames = {}
         
         # Inicializar escenas
-        for SceneClass in (Scene1, Scene2, Scene3, Scene4, Answer, AnswerDetails, Adquisicion1, Adquisicion2, AdicionalQuestion):
+        for SceneClass in (Main,Scene1, Scene2, Scene3, Scene4, Answer, AnswerDetails, Adquisicion1, Adquisicion2, AdicionalQuestion):
             frame = SceneClass(self.container, self)
             frame.grid(row=0, column=0, sticky="nsew")
             self.frames[SceneClass.__name__] = frame
         
         # Mostrar la primera escena
-        self.show_frame("Scene1")
+        self.show_frame("Main")
 
     def show_frame(self, scene_name):
         """Muestra la escena especificada."""

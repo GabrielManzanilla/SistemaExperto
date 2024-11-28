@@ -64,7 +64,7 @@ class AdicionalQuestion(tk.Frame):
         cfg.geography = ""
         cfg.estructura = ""
         cfg.adition_info = ""
-        self.controller.show_frame("Scene1")
+        self.controller.show_frame("Main")
 
     def previous_scene(self):
         """Navegar a la siguiente pregunta."""
